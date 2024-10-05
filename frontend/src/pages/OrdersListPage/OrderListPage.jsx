@@ -24,14 +24,14 @@ const OrderListPage = ({ history }) => {
   }, [dispatch, history, userInfo]);
 
   return (
-    <>
-      <h1>Orders</h1>
+    <div className="text-white">
+      <h1 className="text-center">Orders</h1>
       {loading ? (
         <Loader />
       ) : error ? (
-        <ErrorMessage variant='danger'>{error}</ErrorMessage>
+        <ErrorMessage variant="danger">{error}</ErrorMessage>
       ) : (
-        <Table>
+        <Table striped bordered hover responsive variant="dark" className="table-sm">
           <thead>
             <tr>
               <th>ID</th>
@@ -55,7 +55,7 @@ const OrderListPage = ({ history }) => {
                   {order.isPaid ? (
                     order.paidAt.substring(0, 10)
                   ) : (
-                    <i className='fas fa-times' style={{ color: 'red' }} />
+                    <i className="fas fa-times" style={{ color: 'red' }} />
                   )}
                 </td>
 
@@ -63,12 +63,12 @@ const OrderListPage = ({ history }) => {
                   {order.isDelivered ? (
                     order.deliveredAt.substring(0, 10)
                   ) : (
-                    <i className='fas fa-times' style={{ color: 'red' }} />
+                    <i className="fas fa-times" style={{ color: 'red' }} />
                   )}
                 </td>
                 <td>
                   <LinkContainer to={`/order/${order._id}`}>
-                    <Button variant='dark' className='btn-sm'>
+                    <Button variant="light" className="btn-sm">
                       Details
                     </Button>
                   </LinkContainer>
@@ -78,7 +78,7 @@ const OrderListPage = ({ history }) => {
           </tbody>
         </Table>
       )}
-    </>
+    </div>
   );
 };
 

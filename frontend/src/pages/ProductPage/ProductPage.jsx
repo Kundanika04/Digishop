@@ -56,12 +56,11 @@ const ShopPage = ({ history, match }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    // Include user's name in the review submission
     if (userInfo) {
       dispatch(createProductReview(match.params.id, {
         rating,
         comment,
-        name: userInfo.name, // Add the user's name here
+        name: userInfo.name,
       }));
     }
   };
@@ -78,31 +77,34 @@ const ShopPage = ({ history, match }) => {
           <Link className='btn btn-dark my-3' to='/'>
             Go Back
           </Link>
-          <Row>
-            <Col md={6}>
+          <Row className='bg-dark'>
+            <Col md={6} className='bg-dark rounded-lg'>
               <Image src={product.image} alt={product.name} fluid />
             </Col>
-            <Col md={3}>
-              <ListGroup variant='flush'>
-                <ListGroup.Item>
-                  <h3>{product.name}</h3>
+            <Col md={3} className='bg-dark rounded-lg'>
+              <ListGroup variant='flush' className='bg-dark'>
+                <ListGroup.Item className='bg-dark'>
+                  <h3 style={{ color: 'white' }}>{product.name}</h3>
                 </ListGroup.Item>
-                <ListGroup.Item>
+                <ListGroup.Item className='bg-dark' style={{ color: 'white' }}>
                   <Rating
                     value={product.rating}
                     text={`${product.numReviews} reviews`}
+                    style={{ color: 'white' }}
                   />
                 </ListGroup.Item>
-                <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
-                <ListGroup.Item>
+                <ListGroup.Item className='bg-dark' style={{ color: 'white' }}>
+                  Price: ${product.price}
+                </ListGroup.Item>
+                <ListGroup.Item className='bg-dark' style={{ color: 'white' }}>
                   Description: {product.description}
                 </ListGroup.Item>
               </ListGroup>
             </Col>
-            <Col md={3}>
-              <Card>
-                <ListGroup variant='flush'>
-                  <ListGroup.Item>
+            <Col md={3} className='bg-dark' style={{ color: 'white' }}>
+              <Card className='bg-dark rounded'>
+                <ListGroup variant='flush' className='bg-dark'>
+                  <ListGroup.Item className='bg-dark'>
                     <Row>
                       <Col>Price:</Col>
                       <Col>
@@ -110,7 +112,7 @@ const ShopPage = ({ history, match }) => {
                       </Col>
                     </Row>
                   </ListGroup.Item>
-                  <ListGroup.Item>
+                  <ListGroup.Item className='bg-dark'>
                     <Row>
                       <Col>Status:</Col>
                       <Col>
@@ -119,7 +121,7 @@ const ShopPage = ({ history, match }) => {
                     </Row>
                   </ListGroup.Item>
                   {product.countInStock > 0 && (
-                    <ListGroup.Item>
+                    <ListGroup.Item className='bg-dark'>
                       <Row>
                         <Col>Quantity</Col>
                         <Col>
@@ -127,6 +129,7 @@ const ShopPage = ({ history, match }) => {
                             as='select'
                             value={quantity}
                             onChange={(e) => setQuantity(e.target.value)}
+                            className='bg-dark text-white'
                           >
                             {[...Array(product.countInStock).keys()].map((x) => (
                               <option key={x + 1} value={x + 1}>
@@ -138,7 +141,7 @@ const ShopPage = ({ history, match }) => {
                       </Row>
                     </ListGroup.Item>
                   )}
-                  <ListGroup.Item>
+                  <ListGroup.Item className='bg-dark' style={{ color: 'white' }}>
                     <Button
                       onClick={addToCartHandler}
                       className='btn-block'
@@ -153,19 +156,19 @@ const ShopPage = ({ history, match }) => {
             </Col>
           </Row>
           <Row>
-            <Col md={6}>
-              <h2>Reviews</h2>
+            <Col md={12} className='bg-dark' style={{ color: 'white' }}>
+              <h2 style={{ color: 'white' }}>Reviews</h2>
               {product.reviews.length === 0 && <ErrorMessage>No Reviews</ErrorMessage>}
-              <ListGroup variant='flush'>
+              <ListGroup variant='flush' className='bg-dark'>
                 {product.reviews.map((review) => (
-                  <ListGroup.Item key={review._id}>
+                  <ListGroup.Item key={review._id} className='bg-dark rounded'>
                     <strong>{review.name}</strong>
                     <Rating value={review.rating} />
                     <p>{review.createdAt.substring(0, 10)}</p>
                     <p>{review.comment}</p>
                   </ListGroup.Item>
                 ))}
-                <ListGroup.Item>
+                <ListGroup.Item className='bg-dark rounded'>
                   <h2>Write a Customer Review</h2>
                   {successProductReview && (
                     <ErrorMessage variant='success'>
@@ -177,13 +180,14 @@ const ShopPage = ({ history, match }) => {
                     <ErrorMessage variant='danger'>{errorProductReview}</ErrorMessage>
                   )}
                   {userInfo ? (
-                    <Form onSubmit={submitHandler}>
+                    <Form onSubmit={submitHandler} className='bg-dark'>
                       <Form.Group controlId='rating'>
                         <Form.Label>Rating</Form.Label>
                         <Form.Control
                           as='select'
                           value={rating}
                           onChange={(e) => setRating(e.target.value)}
+                          className='bg-dark text-white'
                         >
                           <option value=''>Select...</option>
                           <option value='1'>1 - Poor</option>
@@ -199,7 +203,11 @@ const ShopPage = ({ history, match }) => {
                           as='textarea'
                           rows='3'
                           value={comment}
+                          name='write'
                           onChange={(e) => setComment(e.target.value)}
+                          className='bg-dark text-white'
+                          style={{ color: 'white' }}
+                          placeholder='Write your comment here...'
                         ></Form.Control>
                       </Form.Group>
                       <Button

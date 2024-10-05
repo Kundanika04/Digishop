@@ -56,20 +56,28 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
   }
 };
 
-export const createProduct = () => async (dispatch, getState) => {
+
+
+export const createProduct = (formData) => async (dispatch, getState) => {
   try {
     dispatch({
       type: ProductActionTypes.PRODUCT_CREATE_REQUEST,
     });
+
     const {
       userLogin: { userInfo },
     } = getState();
 
     const config = {
-      headers: { Authorization: `Bearer ${userInfo.token}` },
+      headers: {
+        'Content-Type': 'multipart/form-data', // Set content type to handle file upload
+        Authorization: `Bearer ${userInfo.token}`,
+      },
     };
 
-    const { data } = await axios.post(`/api/products`, {}, config);
+    // Send the formData containing product details and image
+    const { data } = await axios.post(`/api/products`, formData, config);
+    
     dispatch({
       type: ProductActionTypes.PRODUCT_CREATE_SUCCESS,
       payload: data,
@@ -84,6 +92,7 @@ export const createProduct = () => async (dispatch, getState) => {
     });
   }
 };
+
 
 export const updateProduct = (product) => async (dispatch, getState) => {
   try {

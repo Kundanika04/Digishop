@@ -58,7 +58,7 @@ const ProfilePage = ({ history }) => {
   return (
     <Row>
       <Col md={3}>
-        {user && <h2>{`${user.name}'s Profile`}</h2>}
+        {user && <h2 style={{ color: 'white' }}>{`${user.name}'s Profile`}</h2>}
         {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
         {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
         {success && <ErrorMessage variant="success">Profile Updated!</ErrorMessage>}
@@ -67,42 +67,46 @@ const ProfilePage = ({ history }) => {
         ) : (
           <Form onSubmit={submitHandler}>
             <Form.Group controlId="name">
-              <Form.Label>Name</Form.Label>
+              <Form.Label style={{ color: 'white' }}>Name</Form.Label>
               <Form.Control
                 type="name"
                 value={name}
                 placeholder="Enter Your Name"
                 onChange={(e) => setName(e.target.value)}
+                className="bg-dark text-white"
               />
             </Form.Group>
 
             <Form.Group controlId="email">
-              <Form.Label>Email Address</Form.Label>
+              <Form.Label style={{ color: 'white' }}>Email Address</Form.Label>
               <Form.Control
                 type="email"
                 value={email}
                 placeholder="Enter Email"
                 onChange={(e) => setEmail(e.target.value)}
+                className="bg-dark text-white"
               />
             </Form.Group>
 
             <Form.Group controlId="password">
-              <Form.Label>Password</Form.Label>
+              <Form.Label style={{ color: 'white' }}>Password</Form.Label>
               <Form.Control
                 type="password"
                 value={password}
                 placeholder="Enter Password"
                 onChange={(e) => setPassword(e.target.value)}
+                className="bg-dark text-white"
               />
             </Form.Group>
 
             <Form.Group controlId="confirmPassword">
-              <Form.Label>Confirm Password</Form.Label>
+              <Form.Label style={{ color: 'white' }}>Confirm Password</Form.Label>
               <Form.Control
                 type="password"
                 value={confirmPassword}
                 placeholder="Confirm Password"
                 onChange={(e) => setConfirmPassword(e.target.value)}
+                className="bg-dark text-white"
               />
             </Form.Group>
 
@@ -113,13 +117,13 @@ const ProfilePage = ({ history }) => {
         )}
       </Col>
       <Col md={9}>
-        <h2>My Orders</h2>
+        <h2 style={{ color: 'white' }}>My Orders</h2>
         {loadingOrders ? (
           <Loader />
         ) : errorOrders ? (
           <ErrorMessage variant="danger">{errorOrders}</ErrorMessage>
         ) : (
-          <Table striped bordered hover responsive className="table-sm">
+          <Table striped bordered hover responsive className="table-sm" style={{ color: 'white' }}>
             <thead>
               <tr>
                 <th>ID</th>

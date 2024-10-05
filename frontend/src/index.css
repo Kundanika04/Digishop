@@ -1,16 +1,24 @@
 main {
-  min-height: 80vh;
+  min-height: 81.5vh;
+  background-color: black;
+}
+footer{
+  background-color: black;
+
 }
 h1 {
   font-size: 1.8rem;
   padding: 1rem 0;
+  color: white;
 }
 h2 {
   font-size: 1.4rem;
   padding: 0.5rem 0;
+  color: white;
 }
 h3 {
   padding: 1rem 0;
+  color: white;
 }
 .rating span {
   margin: 0.1rem;
@@ -28,7 +36,7 @@ h3 {
 }
 
 .carousel-caption h2 {
-  color: #fff;
+  color: #ffffff;
 }
 
 .carousel img {

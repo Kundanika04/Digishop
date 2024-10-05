@@ -65,9 +65,9 @@ const PlaceOrderPage = ({ history }) => {
     <>
       <CheckoutSteps step1 step2 step3 step4 />
       <Row>
-        <Col md={8}>
-          <ListGroup variant='flush'>
-            <ListGroup.Item>
+        <Col md={8} className=' bg-dark text-white'>
+          <ListGroup variant='flush' >
+            <ListGroup.Item className=' bg-dark text-white'>
               <h2>Shipping</h2>
               <p>
                 <strong>Address:</strong>
@@ -76,19 +76,19 @@ const PlaceOrderPage = ({ history }) => {
                 {cart.shippingAddress.country}
               </p>
             </ListGroup.Item>
-            <ListGroup.Item>
+            <ListGroup.Item className=' bg-dark text-white'>
               <h2>Payment Method</h2>
               <strong>Method:</strong>
               {cart.paymentMethod}
             </ListGroup.Item>
-            <ListGroup.Item>
+            <ListGroup.Item className=' bg-dark text-white'>
               <h2>Order Items</h2>
               {cart.cartItems.length === 0 ? (
                 <Message>Your Cart Is Empty!</Message>
               ) : (
                 <ListGroup variant='flush'>
                   {cart.cartItems.map((item, index) => (
-                    <ListGroup.Item key={index}>
+                    <ListGroup.Item key={index} className=' bg-dark text-white'>  
                       <Row>
                         <Col md={1}>
                           <Image
@@ -98,8 +98,8 @@ const PlaceOrderPage = ({ history }) => {
                             rounded
                           ></Image>
                         </Col>
-                        <Col>
-                          <Link to={`/product/${item.product}`}>
+                        <Col >
+                          <Link to={`/product/${item.product}`} className=' bg-dark text-white'>
                             {item.name}
                           </Link>
                         </Col>
@@ -115,7 +115,7 @@ const PlaceOrderPage = ({ history }) => {
             </ListGroup.Item>
           </ListGroup>
         </Col>
-        <Col md={4}>
+        <Col md={4} >
           <Card>
             <ListGroup variant='flush'>
               <ListGroup.Item>

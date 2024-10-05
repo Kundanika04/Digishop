@@ -39,24 +39,24 @@ const CartPage = ({ match, location, history }) => {
   };
   return (
     <Row>
-      <Col md={8}>
-        <h1>Shopping Cart</h1>
+      <Col md={8} className='bg-dark text-white'>
+        <h1 className='bg-dark text-white'>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <ErrorMessage>
             Your Cart Is Empty! <Link to='/'>Go Back</Link>
           </ErrorMessage>
         ) : (
-          <ListGroup variant='flush'>
+          <ListGroup variant='flush' className='bg-dark text-white'>
             {cartItems.map((item) => (
-              <ListGroup.Item key={item.product}>
-                <Row>
-                  <Col md={2}>
+              <ListGroup.Item key={item.product} className='bg-dark text-white'>
+                <Row className='bg-dark text-white'>
+                  <Col md={2} className='bg-dark text-white'>
                     <Image src={item.image} alt={item.name} fluid rounded />
                   </Col>
-                  <Col md={3}>
-                    <Link to={`/product/${item.product}`}>{item.name}</Link>
+                  <Col md={3} className='bg-dark text-white'>
+                    <Link to={`/product/${item.product}`} className='bg-dark text-white'>{item.name}</Link>
                   </Col>
-                  <Col md={2}>${(item.price * item.quantity).toFixed(2)}</Col>
+                  <Col md={2} >${(item.price * item.quantity).toFixed(2)}</Col>
                   <Col md={2}>
                     <Form.Control
                       as='select'
@@ -66,6 +66,7 @@ const CartPage = ({ match, location, history }) => {
                           addItemToCart(item.product, Number(e.target.value))
                         )
                       }
+                      className='bg-dark text-white'
                     >
                       {[...Array(item.countInStock).keys()].map((x) => (
                         <option key={x + 1} value={x + 1}>
@@ -79,8 +80,9 @@ const CartPage = ({ match, location, history }) => {
                       type='button'
                       variant='light'
                       onClick={() => removeItemFromCartHandler(item.product)}
+                      className='bg-dark text-white'
                     >
-                      <i className='fas fa-trash'></i>
+                      <i className='fas fa-trash '></i>
                     </Button>
                   </Col>
                 </Row>
@@ -90,7 +92,7 @@ const CartPage = ({ match, location, history }) => {
               <Col md={9}></Col>
               <Col md={3}>
                 {cartItems.length > 0 && (
-                  <Link className='btn btn-dark my-3' to='/'>
+                  <Link className='btn btn-block my-3' style={{ color: 'white',backgroundColor:'black' }} to='/'>
                     Go Back
                   </Link>
                 )}
@@ -99,11 +101,13 @@ const CartPage = ({ match, location, history }) => {
           </ListGroup>
         )}
       </Col>
-      <Col md={4}>
-        <Card>
-          <ListGroup variant='flush'>
-            <ListGroup.Item>
-              <h2>
+      <Col md={4} >
+        
+        <Card className=' text-black'>
+        
+          <ListGroup variant='flush' className='bg-dark text-black'>
+            <ListGroup.Item >
+              <h2 className=' text-black'>
                 Subtotal (
                 {cartItems.reduce(
                   (accumulator, item) => accumulator + item.quantity,

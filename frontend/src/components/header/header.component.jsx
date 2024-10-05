@@ -17,7 +17,7 @@ const Header = () => {
   };
 
   return (
-    <header>
+    <header >
       <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
         <Container>
           <LinkContainer to='/'>
@@ -26,10 +26,10 @@ const Header = () => {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Route render={({ history }) => <SearchBox history={history} />} />
-            <Nav className='ml-auto'>
+            <Nav className='ml-auto' >
               <LinkContainer to='/cart'>
-                <Nav.Link href='/cart'>
-                  <i className='fas fa-shopping-cart'></i>Cart
+                <Nav.Link href='/cart' >
+                  <i className='fas fa-shopping-cart' ></i>Cart
                 </Nav.Link>
               </LinkContainer>          
               {userInfo ? (
@@ -49,7 +49,7 @@ const Header = () => {
                 </LinkContainer>
               )}
               {userInfo && userInfo.isAdmin && (
-                <NavDropdown title='Admin' id='adminmenu'>
+                <NavDropdown title='Admin' id='adminmenu' className='text-white'>
                   <LinkContainer to='/admin/userlist'>
                     <NavDropdown.Item>Users</NavDropdown.Item>
                   </LinkContainer>

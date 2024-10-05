@@ -112,7 +112,7 @@ const ProductEditPage = ({ match, history }) => {
       </Link>
       <Container>
         <Row className='justify-content-md-center'>
-          <Col xs={12} md={6}>
+          <Col xs={12} md={6} className="text-white">
             <h1>Edit Product</h1>
             {loadingUpdate && <Loader />}
             {errorUpdate && (

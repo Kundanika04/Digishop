@@ -22,7 +22,7 @@ const ShippingPage = ({ history }) => {
   };
 
   return (
-    <Container>
+    <Container className='  text-white'>
       <CheckoutSteps step1 step2 />
       <Row className='justify-content-md-center'>
         <Col md={6}>
@@ -34,7 +34,7 @@ const ShippingPage = ({ history }) => {
           ></Image>
         </Col>
         <Col xs={12} md={6}>
-          <h1>Shipping</h1>
+          <h1 className=' text-white'>Shipping</h1>
           <Form onSubmit={submitHandler}>
             <Form.Group controlId='address'>
               <Form.Label>Address</Form.Label>
@@ -44,6 +44,7 @@ const ShippingPage = ({ history }) => {
                 value={address}
                 placeholder='Enter Your Address'
                 onChange={(e) => setAddress(e.target.value)}
+                className=' bg-dark text-white'
               ></Form.Control>
             </Form.Group>
             <Form.Group controlId='city'>
@@ -54,6 +55,7 @@ const ShippingPage = ({ history }) => {
                 value={city}
                 placeholder='Enter Your City'
                 onChange={(e) => setCity(e.target.value)}
+                className=' bg-dark text-white'
               ></Form.Control>
             </Form.Group>
             <Form.Group controlId='postalcode'>
@@ -64,6 +66,7 @@ const ShippingPage = ({ history }) => {
                 value={PostalCode}
                 placeholder='Enter Your Postal Code'
                 onChange={(e) => setPostalCode(e.target.value)}
+                className=' bg-dark text-white'
               ></Form.Control>
             </Form.Group>
 
@@ -75,9 +78,10 @@ const ShippingPage = ({ history }) => {
                 value={country}
                 placeholder='Enter Your Country'
                 onChange={(e) => setCountry(e.target.value)}
+                className=' bg-dark text-white'
               ></Form.Control>
             </Form.Group>
-            <Button type='submit' variant='primary'>
+            <Button type='submit' variant='primary' className=' bg-dark text-white'>
               Continue
             </Button>
           </Form>

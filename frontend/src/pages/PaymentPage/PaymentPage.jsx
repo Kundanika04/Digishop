@@ -28,7 +28,7 @@ const PaymentPage = ({ history }) => {
   };
 
   return (
-    <Container>
+    <Container >
       <CheckoutSteps step1 step2 step3 />
       <Row className='justify-content-md-center'>
         <Col md={6}>
@@ -39,11 +39,11 @@ const PaymentPage = ({ history }) => {
             style={{ border: 'none' }}
           />
         </Col>
-        <Col xs={12} md={6}>
-          <h1>Payment Method</h1>
+        <Col xs={12} md={6} className=' bg-dark text-white'>
+          <h1 className=' text-white'>Payment Method</h1>
           <Form onSubmit={submitHandler}>
             <Form.Group>
-              <Form.Label as='legend'>Select Method</Form.Label>
+              <Form.Label as='legend' className=' bg-dark text-white'>Select Method</Form.Label>
               <Col>
                 {/* <Form.Check
                   type='radio'

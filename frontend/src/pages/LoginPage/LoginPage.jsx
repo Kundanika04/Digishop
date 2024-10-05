@@ -29,8 +29,6 @@ const LoginPage = ({ location, history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
-    // Dispatch Login
     dispatch(login(email, password));
   };
 
@@ -38,14 +36,14 @@ const LoginPage = ({ location, history }) => {
     e.preventDefault();
     setType('text');
   };
+
   const toggleShowPassword = (e) => {
     e.preventDefault();
-
     setType('password');
   };
 
   return (
-    <Container>
+    <Container  style={{ color: 'white' }}>
       <Row className='justify-content-md-center'>
         <Col md={6}>
           <Image
@@ -53,7 +51,7 @@ const LoginPage = ({ location, history }) => {
             alt='Sign In Logo'
             fluid
             style={{ border: 'none' }}
-          ></Image>
+          />
         </Col>
         <Col xs={12} md={6}>
           <h1>Sign In</h1>
@@ -63,17 +61,18 @@ const LoginPage = ({ location, history }) => {
           ) : (
             <Form onSubmit={submitHandler}>
               <Form.Group controlId='email'>
-                <Form.Label>Email Address</Form.Label>
+                <Form.Label style={{ color: 'white' }}>Email Address</Form.Label>
                 <Form.Control
                   type='email'
                   value={email}
                   placeholder='Enter Email'
                   onChange={(e) => setEmail(e.target.value)}
-                ></Form.Control>
+                  className='bg-dark text-white'
+                />
               </Form.Group>
 
               <Form.Group controlId='password'>
-                <Form.Label>Password</Form.Label>
+                <Form.Label style={{ color: 'white' }}>Password</Form.Label>
                 <Row>
                   <Col xs={9}>
                     <Form.Control
@@ -81,22 +80,23 @@ const LoginPage = ({ location, history }) => {
                       value={password}
                       placeholder='Enter Password'
                       onChange={(e) => setPassword(e.target.value)}
+                      className='bg-dark text-white'
                     />
                   </Col>
                   <Col className='d-flex'>
                     {type === 'password' ? (
                       <button
                         onClick={toggleHiddenPassword}
-                        style={{ border: 'none' }}
+                        style={{ border: 'none', backgroundColor: 'transparent' }}
                       >
-                        <VisibilityRoundedIcon />
+                        <VisibilityRoundedIcon style={{ color: 'white' }} />
                       </button>
                     ) : (
                       <button
-                        style={{ border: 'none' }}
+                        style={{ border: 'none', backgroundColor: 'transparent' }}
                         onClick={toggleShowPassword}
                       >
-                        <VisibilityOffRoundedIcon />
+                        <VisibilityOffRoundedIcon style={{ color: 'white' }} />
                       </button>
                     )}
                   </Col>
@@ -110,9 +110,10 @@ const LoginPage = ({ location, history }) => {
 
           <Row className='py-3'>
             <Col>
-              New Customer ?{' '}
+              New Customer?{' '}
               <Link
                 to={redirect ? `/register?redirect=${redirect}` : '/register'}
+                style={{ color: 'white' }}
               >
                 Register
               </Link>

@@ -97,15 +97,15 @@ const OrderPage = ({ history, match }) => {
   ) : error ? (
     <Message variant='danger'>{error}</Message>
   ) : (
-    <>
-      <Link to='/admin/orderlist' className='btn btn-primary my-3'>
+    <div className=" text-white min-vh-100">
+      <Link to='/admin/orderlist' className='btn btn-dark my-3'>
         Go Back
       </Link>
-      <h1>Order {order._id}</h1>
-      <Row>
+      <h1 className=" text-white" >Order {order._id}</h1>
+      <Row className="bg-dark text-white">
         <Col md={8}>
           <ListGroup variant='flush'>
-            <ListGroup.Item>
+            <ListGroup.Item className="bg-dark text-white">
               <h2>Shipping</h2>
               <p>
                 <strong>Name: </strong>
@@ -113,7 +113,7 @@ const OrderPage = ({ history, match }) => {
               </p>
               <p>
                 <strong>Email: </strong>
-                <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
+                <a href={`mailto:${order.user.email}`} className=" text-white">{order.user.email}</a>
               </p>
               <p>
                 <strong>Address:</strong>
@@ -127,7 +127,7 @@ const OrderPage = ({ history, match }) => {
               )}
             </ListGroup.Item>
 
-            <ListGroup.Item>
+            <ListGroup.Item className="bg-dark text-white">
               <h2>Payment Method</h2>
               <p>
                 <strong>Method:</strong> Cash on Delivery
@@ -138,20 +138,22 @@ const OrderPage = ({ history, match }) => {
                 <Message variant='danger'>Not Paid</Message>
               )}
             </ListGroup.Item>
-            <ListGroup.Item>
+            <ListGroup.Item className="bg-dark text-white">
               <h2>Ordered Items</h2>
               {order.orderItems.length === 0 ? (
                 <Message>Order Is Empty!</Message>
               ) : (
                 <ListGroup variant='flush'>
                   {order.orderItems.map((item, index) => (
-                    <ListGroup.Item key={index}>
+                    <ListGroup.Item key={index} className="bg-dark text-white">
                       <Row>
                         <Col md={1}>
                           <Image src={item.image} alt={item.name} fluid rounded />
                         </Col>
                         <Col>
-                          <Link to={`/product/${item.product}`}>{item.name}</Link>
+                          <Link to={`/product/${item.product}`} className="text-white">
+                            {item.name}
+                          </Link>
                         </Col>
                         <Col md={4}>
                           {item.quantity} x ${item.price} = ${item.quantity * item.price}
@@ -166,40 +168,40 @@ const OrderPage = ({ history, match }) => {
         </Col>
 
         <Col md={4}>
-          <Card>
+          <Card className="bg-dark text-white">
             <ListGroup variant='flush'>
-              <ListGroup.Item>
+              <ListGroup.Item className="bg-dark text-white">
                 <h2>Order Summary</h2>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item className="bg-dark text-white">
                 <Row>
                   <Col>Items</Col>
                   <Col>${order.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item className="bg-dark text-white">
                 <Row>
                   <Col>Shipping</Col>
                   <Col>${order.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item className="bg-dark text-white">
                 <Row>
                   <Col>Tax</Col>
                   <Col>${order.taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item className="bg-dark text-white">
                 <Row>
                   <Col>Total</Col>
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
               {userInfo && order.isPaid && !order.isDelivered && (
-                <ListGroup.Item>
+                <ListGroup.Item className="bg-dark text-white">
                   <Button
                     type='button'
-                    className='btn btn-block'
+                    className='btn btn-block btn-light'
                     onClick={deliverHandler}
                   >
                     Mark As Delivered!
@@ -207,7 +209,7 @@ const OrderPage = ({ history, match }) => {
                 </ListGroup.Item>
               )}
               {userInfo && !order.isCancelled && !order.isDelivered && (
-                <ListGroup.Item>
+                <ListGroup.Item className="bg-dark text-white">
                   <Button
                     type='button'
                     className='btn btn-danger btn-block'
@@ -221,7 +223,7 @@ const OrderPage = ({ history, match }) => {
           </Card>
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 
