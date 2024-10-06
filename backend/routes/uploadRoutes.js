@@ -1,46 +1,51 @@
 import express from 'express';
 import multer from 'multer';
-import path from 'path';
+import pkg from 'aws-sdk';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
+
+// Destructure S3 from the imported AWS SDK package
+const { S3 } = pkg;
 
 const router = express.Router();
 
-// Storage engine for multer
-const storage = multer.diskStorage({
-  destination(req, file, cb) {
-    cb(null, 'uploads/'); // Folder to store the uploaded files
-  },
-  filename(req, file, cb) {
-    cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
-  },
+// Configure the AWS SDK
+const s3 = new S3({
+  accessKeyId: process.env.ACCESS_KEY, // Your AWS Access Key
+  secretAccessKey: process.env.AWS_SECRET_KEY, // Your AWS Secret Access Key
+  region: process.env.REGION // Your AWS Region
 });
 
-// Check file types (jpg, jpeg, png)
-function checkFileType(file, cb) {
-  const filetypes = /jpg|jpeg|png/; // Allowed file extensions
-  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-  const mimetype = filetypes.test(file.mimetype);
-
-  if (extname && mimetype) {
-    return cb(null, true); // Valid file
-  } else {
-    cb(new Error('Invalid file type! Only JPG, JPEG, and PNG formats are allowed.'));
-  }
-}
-
-// Multer upload settings
-const upload = multer({
-  storage,
-  fileFilter: function (req, file, cb) {
-    checkFileType(file, cb);
-  },
-});
+// Multer upload settings (in-memory storage)
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 // Route to handle file upload
-router.post('/', upload.single('image'), (req, res) => {
+router.post('/', upload.single('image'), async (req, res) => {
   if (!req.file) {
-    return res.status(400).send('No file uploaded or invalid file type.');
+    return res.status(400).json({ error: 'No file uploaded or invalid file type.' });
   }
-  res.send(`/${req.file.path.replace('\\', '/')}`); // Send the file path after successful upload
+
+  // S3 upload parameters
+  const params = {
+    Bucket: process.env.BUCKET_NAME, // S3 bucket name
+    Key: `${Date.now().toString()}-${req.file.originalname}`, // Unique file name for S3
+    Body: req.file.buffer, // File data
+    ContentType: req.file.mimetype, // MIME type of the file
+  };
+
+  try {
+    // Upload the file to S3
+    const data = await s3.upload(params).promise();
+    
+    // Return the file URL to the front-end
+    res.status(200).json({ fileUrl: data.Location }); // The S3 URL of the uploaded file
+  } catch (error) {
+    console.error('Error uploading to S3:', error); // Log the error
+    res.status(500).json({ error: 'Error uploading to S3', details: error.message });
+  }
 });
 
 export default router;

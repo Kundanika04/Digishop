@@ -25,34 +25,29 @@ const ProductCreatePage = ({ history }) => {
   const { loading, error, success } = productCreate;
 
   const uploadFileHandler = async (e) => {
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append('image', file);
-    setUploading(true);
-
+    const file = e.target.files[0]; // Get the selected file
+    const formData = new FormData(); // Create a new FormData object
+    formData.append('image', file); // Append the file to the formData
+  
     try {
       const config = {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'multipart/form-data', // Set the content type to handle file uploads
         },
       };
+  
+      // Send the file to the backend and expect the file URL in response
       const { data } = await axios.post('/api/upload', formData, config);
-      setImage(data.replace('\\', '/'));
-      setUploading(false);
+  
+      // Set the returned file URL in your component state (replace setImage logic as per your app)
+      setImage(data.fileUrl); // Assuming the response contains the file URL as `fileUrl`
+  
     } catch (error) {
-      console.error(error);
-      Swal.fire({
-        position: 'center',
-        icon: 'error',
-        title: 'Please upload only images!',
-        showConfirmButton: false,
-        timer: 3000,
-      });
-
-      setUploading(false);
-      
+      console.error('Error uploading image:', error); // Log any errors
     }
   };
+  
+  
 
   const submitHandler = (e) => {
     e.preventDefault();
