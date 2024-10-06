@@ -126,10 +126,19 @@ const ProductsListPage = ({ history, match }) => {
         </Col>
 
         <Col className='text-right'>
+<<<<<<< HEAD
           <Button className='my-3' onClick={() => setShowModal(true)}>
             <i className='fas fa-plus'></i> Create Product
           </Button>
         </Col>
+=======
+    <LinkContainer to='/admin/product/create'>
+    <Button className='my-3'>
+      <i className='fas fa-plus'></i> Create Product
+    </Button>
+  </LinkContainer>
+</Col>
+>>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396
       </Row>
 
       {loadingDelete && <Loader />}

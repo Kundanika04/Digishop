@@ -59,6 +59,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 //@route POST /api/products
 // @access Private, Admin
 const createProduct = asyncHandler(async (req, res) => {
+<<<<<<< HEAD
   if (!req.session.userId || !req.session.isAdmin) {
     res.status(403).json({ message: 'Not Authorized, Admin privileges required!' });
     return;
@@ -87,6 +88,45 @@ const createProduct = asyncHandler(async (req, res) => {
   res.status(201).json(createdProduct);
 });
 
+=======
+  // Check if the user is an admin
+  if (!req.session.userId || !req.session.isAdmin) {
+    return res.status(403).json({ message: 'Not Authorized, Admin privileges required!' });
+  }
+
+  // Extract fields from the request body
+  const { name, price, brand, category, countInStock, description, image } = req.body;
+
+  // Validate all required fields
+  if (!name || !price || !image || !brand || !category || countInStock === undefined || !description) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+
+  // Create a new product instance
+  const product = new Product({
+    name,
+    price,
+    user: req.session.userId, // Store the ID of the user creating the product
+    image, // Image from the request body (assumed to be a URL or file name)
+    brand,
+    category,
+    countInStock,
+    numReviews: 0, // Initialize the number of reviews to 0
+    description,
+  });
+
+  // Attempt to save the product
+  try {
+    const createdProduct = await product.save();
+    return res.status(201).json(createdProduct); // Respond with the created product
+  } catch (error) {
+    console.error('Error creating product:', error);
+    return res.status(500).json({ message: 'Server error, please try again later' });
+  }
+});
+
+
+>>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396
 //@desc  Update a Product
 //@route PUT /api/products/:id
 // @access Private, Admin

@@ -96,4 +96,63 @@ const logoutUser = asyncHandler(async (req, res) => {
   });
 });
 
+<<<<<<< HEAD
 export { authUser, registerUser, getUserProfile, logoutUser };
+=======
+const getUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({});
+  res.json(users);
+});
+
+const updateUser = asyncHandler(async (req, res) => {
+  const { name, email, isAdmin } = req.body;
+
+  // Find the user by ID
+  const user = await User.findById(req.params.id);
+  
+  if (user) {
+    // Update user details
+    user.name = name || user.name; // If no name is provided, retain the original name
+    user.email = email || user.email; // If no email is provided, retain the original email
+    user.isAdmin = isAdmin !== undefined ? isAdmin : user.isAdmin; // Allow updating admin status
+
+    const updatedUser = await user.save(); // Save the updated user
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+});
+
+
+const deleteUser = asyncHandler(async (req, res) => {
+  // Find the user by ID
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    await user.remove(); // Remove the user from the database
+    res.json({ message: 'User removed' });
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+});
+
+const getUserById = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).select('-password');
+
+  if (user) {
+      res.json(user);
+  } else {
+      res.status(404).json({ message: 'User not found' });
+  }
+});
+
+export { authUser, registerUser, getUserProfile, logoutUser,getUsers,updateUser,deleteUser,getUserById };
+>>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396

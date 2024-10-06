@@ -18,6 +18,10 @@ import UserListPage from './pages/UsersListPage/UsersListPage';
 import UserEditPage from './pages/UserEditPage/UserEditPage';
 import ProductsListPage from './pages/ProductsListPage/ProductsListPage';
 import ProductEditPage from './pages/ProductEditPage/ProductEditPage';
+<<<<<<< HEAD
+=======
+import ProductCreatePage from './pages/productCreate/ProductCreatePage';
+>>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396
 
 const App = () => {
   return (
@@ -43,6 +47,10 @@ const App = () => {
             exact
           />
           <Route path='/admin/product/:id/edit' component={ProductEditPage} />
+<<<<<<< HEAD
+=======
+          <Route path='/admin/product/create' component={ProductCreatePage} />
+>>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396
           <Route path='/admin/orderlist' component={OrderListPage} />
           <Route path='/search/:keyword' component={HomePage} exact />
           <Route path='/page/:pageNumber' component={HomePage} exact />
