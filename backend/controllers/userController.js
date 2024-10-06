@@ -96,9 +96,6 @@ const logoutUser = asyncHandler(async (req, res) => {
   });
 });
 
-<<<<<<< HEAD
-export { authUser, registerUser, getUserProfile, logoutUser };
-=======
 const getUsers = asyncHandler(async (req, res) => {
   const users = await User.find({});
   res.json(users);
@@ -155,4 +152,3 @@ const getUserById = asyncHandler(async (req, res) => {
 });
 
 export { authUser, registerUser, getUserProfile, logoutUser,getUsers,updateUser,deleteUser,getUserById };
->>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396

@@ -59,36 +59,6 @@ const deleteProduct = asyncHandler(async (req, res) => {
 //@route POST /api/products
 // @access Private, Admin
 const createProduct = asyncHandler(async (req, res) => {
-<<<<<<< HEAD
-  if (!req.session.userId || !req.session.isAdmin) {
-    res.status(403).json({ message: 'Not Authorized, Admin privileges required!' });
-    return;
-  }
-
-  const { name, price, image, brand, category, countInStock, description } = req.body;
-
-  if (!name || !price || !image || !brand || !category || countInStock === undefined || !description) {
-    res.status(400).json({ message: 'All fields are required' });
-    return;
-  }
-
-  const product = new Product({
-    name,
-    price,
-    user: req.session.userId, // Use session user ID
-    image,
-    brand,
-    category,
-    countInStock,
-    numReviews: 0,
-    description,
-  });
-
-  const createdProduct = await product.save();
-  res.status(201).json(createdProduct);
-});
-
-=======
   // Check if the user is an admin
   if (!req.session.userId || !req.session.isAdmin) {
     return res.status(403).json({ message: 'Not Authorized, Admin privileges required!' });
@@ -126,7 +96,6 @@ const createProduct = asyncHandler(async (req, res) => {
 });
 
 
->>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396
 //@desc  Update a Product
 //@route PUT /api/products/:id
 // @access Private, Admin

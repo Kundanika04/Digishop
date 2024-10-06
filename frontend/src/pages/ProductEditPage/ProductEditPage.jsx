@@ -29,15 +29,7 @@ const ProductEditPage = ({ match, history }) => {
   const { loading, error, product } = productDetail;
 
   const productUpdate = useSelector((state) => state.productUpdate);
-<<<<<<< HEAD
-  const {
-    loading: loadingUpdate,
-    error: errorUpdate,
-    success: successUpdate,
-  } = productUpdate;
-=======
   const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = productUpdate;
->>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396
 
   useEffect(() => {
     if (successUpdate) {
@@ -45,15 +37,9 @@ const ProductEditPage = ({ match, history }) => {
       Swal.fire({
         position: 'center',
         icon: 'success',
-<<<<<<< HEAD
-        title: 'Updated Successfully!',
-        showConfirmButton: false,
-        timer: 1000,
-=======
         title: 'Product Updated Successfully!',
         showConfirmButton: false,
         timer: 1500,
->>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396
       });
       history.push('/admin/productlist');
     } else {
@@ -83,26 +69,17 @@ const ProductEditPage = ({ match, history }) => {
           'Content-Type': 'multipart/form-data',
         },
       };
-<<<<<<< HEAD
-      const { data } = await axios.post('/api/upload', formData, config);
-      setImage(data);
-=======
       // Ensure that the path matches your backend endpoint
       const { data } = await axios.post('/api/upload', formData, config);
 
       setImage(data.replace('\\', '/')); // Fix the path for front-end rendering
->>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396
       setUploading(false);
     } catch (error) {
       console.error(error);
       Swal.fire({
         position: 'center',
         icon: 'error',
-<<<<<<< HEAD
-        title: 'Please Upload Images Only xD!',
-=======
         title: 'Please upload only images!',
->>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396
         showConfirmButton: false,
         timer: 3000,
       });
@@ -133,19 +110,10 @@ const ProductEditPage = ({ match, history }) => {
       </Link>
       <Container>
         <Row className='justify-content-md-center'>
-<<<<<<< HEAD
-          <Col xs={12} md={6} className="text-white">
-            <h1>Edit Product</h1>
-            {loadingUpdate && <Loader />}
-            {errorUpdate && (
-              <ErrorMessage variant='danger'>{errorUpdate}</ErrorMessage>
-            )}
-=======
           <Col xs={12} md={6} className='text-white'>
             <h1>Edit Product</h1>
             {loadingUpdate && <Loader />}
             {errorUpdate && <ErrorMessage variant='danger'>{errorUpdate}</ErrorMessage>}
->>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396
 
             {loading ? (
               <Loader />
@@ -158,11 +126,7 @@ const ProductEditPage = ({ match, history }) => {
                   <Form.Control
                     type='name'
                     value={name}
-<<<<<<< HEAD
-                    placeholder='Enter Your Name'
-=======
                     placeholder='Enter Product Name'
->>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396
                     onChange={(e) => setName(e.target.value)}
                   ></Form.Control>
                 </Form.Group>
@@ -182,11 +146,7 @@ const ProductEditPage = ({ match, history }) => {
                   <Form.Control
                     type='text'
                     value={image}
-<<<<<<< HEAD
-                    placeholder='Enter Image URL'
-=======
                     placeholder='Enter Image URL or Upload'
->>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396
                     onChange={(e) => setImage(e.target.value)}
                   ></Form.Control>
                   <Form.File
@@ -209,11 +169,7 @@ const ProductEditPage = ({ match, history }) => {
                 </Form.Group>
 
                 <Form.Group controlId='countInStock'>
-<<<<<<< HEAD
-                  <Form.Label>CountInStock</Form.Label>
-=======
                   <Form.Label>Count In Stock</Form.Label>
->>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396
                   <Form.Control
                     type='number'
                     value={countInStock}
@@ -227,11 +183,7 @@ const ProductEditPage = ({ match, history }) => {
                   <Form.Control
                     type='text'
                     value={category}
-<<<<<<< HEAD
-                    placeholder='Enter Category '
-=======
                     placeholder='Enter Category'
->>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396
                     onChange={(e) => setCategory(e.target.value)}
                   ></Form.Control>
                 </Form.Group>
@@ -241,11 +193,7 @@ const ProductEditPage = ({ match, history }) => {
                   <Form.Control
                     type='text'
                     value={description}
-<<<<<<< HEAD
-                    placeholder='Enter Description '
-=======
                     placeholder='Enter Description'
->>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396
                     onChange={(e) => setDescription(e.target.value)}
                   ></Form.Control>
                 </Form.Group>

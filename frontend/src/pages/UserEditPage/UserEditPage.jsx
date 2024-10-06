@@ -15,10 +15,6 @@ import Registration from '../RegistrationPage/Registration.png';
 const UserEditPage = ({ match, history }) => {
   const userId = match.params.id;
   const [name, setName] = useState('');
-<<<<<<< HEAD
-
-=======
->>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396
   const [email, setEmail] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
 
@@ -46,11 +42,7 @@ const UserEditPage = ({ match, history }) => {
       });
       history.push('/admin/userlist');
     } else {
-<<<<<<< HEAD
-      if (!user.name || user._id !== userId) {
-=======
       if (!user || user._id !== userId) {
->>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396
         dispatch(getUserDetails(userId));
       } else {
         setName(user.name);
@@ -78,11 +70,7 @@ const UserEditPage = ({ match, history }) => {
               alt='Registration Logo'
               fluid
               style={{ border: 'none' }}
-<<<<<<< HEAD
-            ></Image>
-=======
             />
->>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396
           </Col>
           <Col xs={12} md={6}>
             <h1>Edit User</h1>
@@ -97,25 +85,6 @@ const UserEditPage = ({ match, history }) => {
             ) : (
               <Form onSubmit={submitHandler}>
                 <Form.Group controlId='name'>
-<<<<<<< HEAD
-                  <Form.Label>Name</Form.Label>
-                  <Form.Control
-                    type='name'
-                    value={name}
-                    placeholder='Enter Your Name'
-                    onChange={(e) => setName(e.target.value)}
-                  ></Form.Control>
-                </Form.Group>
-
-                <Form.Group controlId='email'>
-                  <Form.Label>Email Address</Form.Label>
-                  <Form.Control
-                    type='email'
-                    value={email}
-                    placeholder='Enter Email'
-                    onChange={(e) => setEmail(e.target.value)}
-                  ></Form.Control>
-=======
                   <Form.Label style={{ color: 'white' }}>Name</Form.Label>
                   <Form.Control
                     type='name'
@@ -143,7 +112,6 @@ const UserEditPage = ({ match, history }) => {
                       border: '1px solid #6c757d', // Light gray border
                     }}
                   />
->>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396
                 </Form.Group>
 
                 <Form.Group controlId='isadmin'>
@@ -151,16 +119,10 @@ const UserEditPage = ({ match, history }) => {
                     <Col xs={9}>
                       <Form.Check
                         type='checkbox'
-<<<<<<< HEAD
-                        checked={isAdmin}
-                        label='Is Admin'
-                        onChange={(e) => setIsAdmin(e.target.checked)}
-=======
                         checked={user ? isAdmin : false}
                         label='Is Admin'
                         onChange={(e) => setIsAdmin(e.target.checked)}
                         style={{ color: 'white' }} // Optional: white text for the label
->>>>>>> 021e542cefde1da78efe0a36373062ff4cf67396
                       />
                     </Col>
                   </Row>
